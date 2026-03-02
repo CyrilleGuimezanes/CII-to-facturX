@@ -27,7 +27,11 @@ class CiiParser
         $this->rawXml = $xmlContent;
 
         libxml_use_internal_errors(true);
-        $xml = simplexml_load_string($xmlContent);
+        // Disable external entity loading to prevent XXE attacks (needed for PHP < 8.0)
+        if (\PHP_VERSION_ID < 80000) {
+            libxml_disable_entity_loader(true);
+        }
+        $xml = simplexml_load_string($xmlContent, 'SimpleXMLElement', LIBXML_NONET);
         if ($xml === false) {
             $errors = libxml_get_errors();
             libxml_clear_errors();
