@@ -1,0 +1,15 @@
+{
+    "name": "cyrilleguimezanes/cii-to-facturx",
+    "description": "Given a XML CII create a FacturX with a generated PDF",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1",
+        "tecnickcom/tcpdf": "^6.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "CiiToFacturX\\": "src/"
+        }
+    }
+}
